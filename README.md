@@ -15,7 +15,7 @@ So it is all about MVVM pattern. Let's start,
 ## Project SetUp - 
 
 In this project we will use bellow API
-- `Used Api` : [https://api.quotable.io/](https://api.quotable.io/quotes)  
+- `Used Api` : [https://api.quotable.io/quotes](https://api.quotable.io/quotes)  
 - `base url` : https://api.quotable.io/
 - `end-point` : quotes
 
@@ -39,16 +39,16 @@ Here, Project SetUp Done
 
 # Let's Start
 
- - Now create an `package` `models` and inside that create your `data classes` according to the json of this api.
+### - Now create an `package` `models` and inside that create your `data classes` according to the json of this api.
  - In my case there are two data classes -
    1. QuoteList
    2. Result
 
- - Now create an `package` `api` inside that create two classes
+### - Now create an `package` `api` inside that create two classes
    1. `interface class` ( QuoteService ) and
    2. `object class` ( RetrofitHelper ).
 
-1. In your interface class ( QuoteService )
+#### 1. In your interface class ( QuoteService )
 
   - We have to declare all our end-points here.
   - `@GET("quotes") :` define an function and annotate it as @GET and pass your end-point ("quotes") to get your data from the API.
@@ -62,7 +62,7 @@ Here, Project SetUp Done
 
   - Here we declare an suspend function becouse we don't want to run this api function on our main thread. This is the beauty of coroutines.
     
-2. Now inside your object class ( RetrofitHelper )
+#### 2. Now inside your object class ( RetrofitHelper )
 
  - Here we will define our base_url.
  - Create an fun which returns an instance of our Retrofit.
@@ -77,7 +77,7 @@ Here, Project SetUp Done
 
 Here, setUp of our Remote database has been done.
     
- - Now create another `package` `repository` and create an kotlin class `QuoteRepository`.
+### - Now create another `package` `repository` and create an kotlin class `QuoteRepository`.
 
  - as we know this `QuoteRepository class` will interact with our remote `database` so,
  - It will take instance of our QuoteService class so that it can have the access of our all end-points.
@@ -103,7 +103,7 @@ First Inside `QuoteRepository`,
         }
     }
 
-- Now create another `package` `viewmodels`, inside that create an kotlin class `MainViewModel` and `MainViewModelFactory`.
+### - Now create another `package` `viewmodels`, inside that create an kotlin class `MainViewModel` and `MainViewModelFactory`.
 
 - Now this MainViewModel class will take `instance of our QuoteRepository class`.
 - First initialise it with init block and inside that call the function getQuotes which we declared in our QuoteRepository class.

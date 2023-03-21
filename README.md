@@ -15,6 +15,7 @@ So it is all about MVVM pattern. Let's start,
 ## Project SetUp - 
 
 In this project we will use bellow API
+- `Used API description` : [https://github.com/lukePeavey/quotable#list-quotes](https://github.com/lukePeavey/quotable#list-quotes)
 - `Used Api` : [https://api.quotable.io/quotes](https://api.quotable.io/quotes)  
 - `base url` : https://api.quotable.io/
 - `end-point` : quotes

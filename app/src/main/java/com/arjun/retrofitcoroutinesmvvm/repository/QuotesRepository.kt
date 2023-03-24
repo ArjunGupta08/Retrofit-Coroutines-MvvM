@@ -7,15 +7,15 @@ import com.arjun.retrofitcoroutinesmvvm.model.QuoteList
 
 class QuotesRepository(private val quoteService: QuoteService) {
 
-    private val quotesLiveData = MutableLiveData<QuoteList>()
+    private val quotesLiveData = MutableLiveData<Response<QuoteList>>()
 
-    val quotes : LiveData<QuoteList>
+    val quotes : LiveData<Response<QuoteList>>
     get() = quotesLiveData
 
     suspend fun getQuotes(page : Int){
         val result = quoteService.getQuotes(page)
         if (result?.body() != null){
-            quotesLiveData.postValue(result.body())
+            quotesLiveData.postValue(Response.Success(result.body()))
         }
     }
 }

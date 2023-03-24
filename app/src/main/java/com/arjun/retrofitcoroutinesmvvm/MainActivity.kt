@@ -3,12 +3,14 @@ package com.arjun.retrofitcoroutinesmvvm
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arjun.retrofitcoroutinesmvvm.api.QuoteService
 import com.arjun.retrofitcoroutinesmvvm.api.RetrofitHelper
 import com.arjun.retrofitcoroutinesmvvm.repository.QuotesRepository
+import com.arjun.retrofitcoroutinesmvvm.repository.Response
 import com.arjun.retrofitcoroutinesmvvm.viewModel.MainViewModel
 import com.arjun.retrofitcoroutinesmvvm.viewModel.MainViewModelFactory
 
@@ -32,10 +34,21 @@ class MainActivity : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
 
         mainViewModel.quotes.observe(this){
-            // SetUp Adapter --->
-            val newAdapter = Adapter(applicationContext, it.results)
-            recyclerView.adapter = newAdapter
-            newAdapter.notifyDataSetChanged()
+
+            when(it){
+                is Response.Success -> {
+                    it.data?.let {
+                        // SetUp Adapter --->
+                        val newAdapter = Adapter(applicationContext, it.results)
+                        recyclerView.adapter = newAdapter
+                        newAdapter.notifyDataSetChanged()
+                    }
+                }
+                is Response.Error -> {
+                    Toast.makeText(applicationContext,"Something Error",Toast.LENGTH_SHORT).show()
+                }
+                is Response.Loading -> {}
+            }
         }
 
     }
